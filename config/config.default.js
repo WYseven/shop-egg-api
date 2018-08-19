@@ -35,5 +35,11 @@ module.exports = appInfo => {
     credentials: true
   };
 
+  // 设置jwt秘钥
+  config.jwt = {
+    key: 'test',
+    date: '10s'
+  }
+
   return config;
 };

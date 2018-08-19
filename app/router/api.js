@@ -8,6 +8,7 @@ module.exports = app => {
   const apiV1Router = app.router.namespace('/api/v1');
   const { controller, middleware } = app;
   
+  const auth = app.middleware.auth();
   
   // 用户登录注册
   apiV1Router.post('/login', controller.user.user.login);
@@ -18,9 +19,9 @@ module.exports = app => {
   apiV1Router.get('/shop_detail', controller.shop.shop_detail)
 
   // 购物车增删改查
-  apiV1Router.get('/add_car', controller.car.add_car)
-  apiV1Router.get('/remove_car', controller.car.remove_car)
-  apiV1Router.get('/shop_car', controller.car.shop_car)
-  apiV1Router.get('/checkout', controller.car.checkout)
+  apiV1Router.get('/add_car', auth,controller.car.add_car)
+  apiV1Router.get('/remove_car', auth,controller.car.remove_car)
+  apiV1Router.get('/shop_car', auth,controller.car.shop_car)
+  apiV1Router.get('/checkout', auth,controller.car.checkout)
 
 };

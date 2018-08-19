@@ -1,6 +1,7 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+const jwt = require('jsonwebtoken');
 
 class UserController extends Controller {
   async login() {
@@ -37,8 +38,19 @@ class UserController extends Controller {
         error: '密码不正确'
       }
     }
+    
+    const token = jwt.sign({
+      id: user._id,
+    },this.app.config.jwt.key,{
+      expiresIn: this.app.config.jwt.date
+    });
+    
+    let decode = jwt.verify(token, ctx.app.config.jwt.key);
+    console.log(decode);
 
     this.ctx.body = {
+      user_info:{username: user.username,_id:user._id},
+      token,
       success: true,
       errorCode: 0,
       error: '可以登录'

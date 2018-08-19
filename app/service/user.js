@@ -1,6 +1,7 @@
 'use strict';
 const Service = require('egg').Service;
 
+
 class UserService extends Service {
   /* 
     根据用户名查找用户
@@ -20,13 +21,13 @@ class UserService extends Service {
     @param {string} password 密码
     @return {Promise[user]} 承载用户的 Promise 对象
   */
-  saveNewUser(username,password) {
+  async saveNewUser(username,password) {
     
     let User = new this.ctx.model.User();
     User.username = username;
     User.password = password;
     
-    return User.save();
+    return User.save()
   }
 }
 
