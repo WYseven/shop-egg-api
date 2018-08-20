@@ -45,9 +45,6 @@ class UserController extends Controller {
       expiresIn: this.app.config.jwt.date
     });
     
-    let decode = jwt.verify(token, ctx.app.config.jwt.key);
-    console.log(decode);
-
     this.ctx.body = {
       user_info:{username: user.username,_id:user._id},
       token,

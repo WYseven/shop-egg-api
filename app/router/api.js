@@ -22,6 +22,5 @@ module.exports = app => {
   apiV1Router.get('/add_car', auth,controller.car.add_car)
   apiV1Router.get('/remove_car', auth,controller.car.remove_car)
   apiV1Router.get('/shop_car', auth,controller.car.shop_car)
-  apiV1Router.get('/checkout', auth,controller.car.checkout)
-
+  apiV1Router.get('/checkout', auth,controller.car.checkout);
 };
